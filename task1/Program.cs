@@ -1,4 +1,4 @@
-﻿Console.WriteLine("Введите количество вводимых чисел: ");
+﻿Console.WriteLine("Введите размер массива: ");
 int M = Convert.ToInt32(Console.ReadLine());
 int[] array = new int[M];
 
