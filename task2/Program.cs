@@ -1,44 +1,43 @@
-﻿Console.WriteLine($"\nЗадача 43.  Найти точку пересечения двух прямых \n");
+﻿double[,] val = new double[2, 2];
+double[] cross = new double[2];
 
-double[,] coeff = new double[2, 2];
-double[] crossPoint = new double[2];
-
-void InputCoefficients(){
-  for (int i = 0; i < coeff.GetLength(0); i++)
+void InValue(){
+  for (int i = 0; i < val.GetLength(0); i++)
   {
-    Console.Write($"Введите коэффициенты {i+1}-го уравнения (y = k * x + b):\n");
-    for (int j = 0; j < coeff.GetLength(1); j++)
+    Console.Write($"Введите значения переменных {i+1}-го уравнения (y = k * x + b):\n");
+    for (int j = 0; j < val.GetLength(1); j++)
     {
-      if(j==0) Console.Write($"Введите коэффициент k: ");
-      else Console.Write($"Введите коэффициент b: ");
-      coeff[i,j] = Convert.ToInt32(Console.ReadLine());
+      if(j==0) Console.Write($"Введите значение k: ");
+      else Console.Write($"Введите значение b: ");
+      val[i,j] = Convert.ToInt32(Console.ReadLine());
     }
   }
 }
 
-double[] Decision(double[,] coeff)
+double[] Decision(double[,] val)
 {
-  crossPoint[0] = (coeff[1,1] - coeff[0,1]) / (coeff[0,0] - coeff[1,0]);
-  crossPoint[1] = crossPoint[0] * coeff[0,0] + coeff[0,1];
-  return crossPoint;
+  cross[0] = (val[1,1] - val[0,1]) / (val[0,0] - val[1,0]);
+  cross[1] = cross[0] * val[0,0] + val[0,1];
+  return cross;
 }
 
-void OutputResponse(double[,] coeff)
+void OutValue(double[,] val)
 {
-  if (coeff[0,0] == coeff[1,0] && coeff[0,1] == coeff[1,1]) 
+  if (val[0,0] == val[1,0] && val[0,1] == val[1,1]) 
   {
-    Console.Write($"\nПрямые совпадают");
+    Console.WriteLine("Прямые совпадают");
   }
-  else if (coeff[0,0] == coeff[1,0] && coeff[0,1] != coeff[1,1]) 
+  else if (val[0,0] == val[1,0] && val[0,1] != val[1,1]) 
   {
-    Console.Write($"\nПрямые параллельны");
+    Console.WriteLine("Прямые параллельны");
   }
   else 
   {
-    Decision(coeff);
-    Console.Write($"\nТочка пересечения прямых: ({crossPoint[0]}, {crossPoint[1]})");
+    Decision(val);
+    Console.WriteLine($"Точка пересечения прямых: ({cross[0]}, {cross[1]})");
   }
 }
 
-InputCoefficients();
-OutputResponse(coeff);
+InValue();
+Console.WriteLine();
+OutValue(val);
